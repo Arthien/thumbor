@@ -9,9 +9,9 @@ _fill_apply(PyObject *self, PyObject *args)
         return NULL;
     }
 
-    char *image_mode_str = PyString_AsString(image_mode);
-    Py_ssize_t size = PyString_Size(buffer);
-    unsigned char *ptr = (unsigned char *) PyString_AsString(buffer);
+    char *image_mode_str = PyBytes_AsString(image_mode);
+    Py_ssize_t size = PyBytes_Size(buffer);
+    unsigned char *ptr = (unsigned char *) PyBytes_AsString(buffer);
 
     int num_bytes = bytes_per_pixel(image_mode_str);
     int r_idx = rgb_order(image_mode_str, 'R'),
@@ -34,10 +34,10 @@ _fill_apply(PyObject *self, PyObject *args)
 
     // TODO
     // I tried making this function return a hex color string as "23abdd"
-    // but PyString_FromFormat couldnt zero pad the numbers
-    // example PyString_FromFormat("%02x%02x%02x", 3, 1, 11) returns "31b"
+    // but PyBytes_FromFormat couldnt zero pad the numbers
+    // example PyBytes_FromFormat("%02x%02x%02x", 3, 1, 11) returns "31b"
     // the correct would be "03010b"
-    // http://docs.python.org/2/c-api/string.html#PyString_FromFormat
+    // http://docs.python.org/2/c-api/string.html#PyBytes_FromFormat
 
     return Py_BuildValue("(lll)", r, g, b);
 }

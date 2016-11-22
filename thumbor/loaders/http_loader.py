@@ -11,8 +11,7 @@
 import datetime
 import re
 from functools import partial
-from urlparse import urlparse
-from urllib2 import unquote
+from urllib.parse import urlparse, unquote
 
 import tornado.httpclient
 

@@ -8,9 +8,20 @@
                                         {"apply", NAME ## _apply, METH_VARARGS, DOC}, \
                                         {0, 0, 0, 0} \
                                     }; \
-                                    PyMODINIT_FUNC init ## NAME(void) { \
-                                        Py_InitModule3(#NAME, NAME ## _methods, #NAME " native module"); \
-                                    }
+                                    static struct PyModuleDef moduledef = { \
+                                    	PyModuleDef_HEAD_INIT, \
+                                    	"", \
+                                    	DOC, \
+                                    	-1, \
+                                    	NAME ## _methods, \
+                                    	NULL, \
+                                    	NULL, \
+                                    	NULL, \
+                                    	NULL \
+                                    }; \
+                                    PyMODINIT_FUNC PyInit_ ## NAME(void) { \
+                                        return PyModule_Create(&moduledef); \
+                                    } \
 
 
 #endif

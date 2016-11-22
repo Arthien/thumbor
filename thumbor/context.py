@@ -86,7 +86,7 @@ class ServerParameters(object):
 
     @security_key.setter
     def security_key(self, key):
-        if isinstance(key, unicode):
+        if isinstance(key, str):
             key = key.encode('utf-8')
         self._security_key = key
 
@@ -288,5 +288,5 @@ class ThreadPool(object):
 
     def cleanup(self):
         if self.pool:
-            print "Joining threads...."
+            print("Joining threads....")
             self.pool.shutdown()

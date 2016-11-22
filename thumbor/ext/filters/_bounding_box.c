@@ -75,13 +75,13 @@ _bounding_box_apply(PyObject *self, PyObject *args)
         return NULL;
     }
 
-    char *image_mode_str = PyString_AsString(image_mode);
-    char *reference_mode = PyString_AsString(reference_mode_py);
-    unsigned char *buffer = (unsigned char *) PyString_AsString(buffer_py);
-    int width = (int) PyInt_AsLong(width_py),
-        height = (int) PyInt_AsLong(height_py);
+    char *image_mode_str = PyBytes_AsString(image_mode);
+    char *reference_mode = PyBytes_AsString(reference_mode_py);
+    unsigned char *buffer = (unsigned char *) PyBytes_AsString(buffer_py);
+    int width = (int) PyLong_AsLong(width_py),
+        height = (int) PyLong_AsLong(height_py);
     int num_bytes = bytes_per_pixel(image_mode_str);
-    int tolerance = (int) PyInt_AsLong(tolerance_py);
+    int tolerance = (int) PyLong_AsLong(tolerance_py);
 
     bitmap bitmap = {
         width,

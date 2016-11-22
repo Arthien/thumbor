@@ -12,18 +12,18 @@ _round_corner_apply(PyObject *self, PyObject *args)
         return NULL;
     }
 
-    char *image_mode_str = PyString_AsString(image_mode);
-    int aa_enabled = (int)PyInt_AsLong(aa_py);
+    char *image_mode_str = PyBytes_AsString(image_mode);
+    int aa_enabled = (int)PyLong_AsLong(aa_py);
 
-    unsigned char *ptr = (unsigned char *) PyString_AsString(buffer);
-    int a_radius = (int) PyInt_AsLong(a_radius_py),
-        b_radius = (int) PyInt_AsLong(b_radius_py),
-        width = (int) PyInt_AsLong(width_py),
-        height = (int) PyInt_AsLong(height_py);
+    unsigned char *ptr = (unsigned char *) PyBytes_AsString(buffer);
+    int a_radius = (int) PyLong_AsLong(a_radius_py),
+        b_radius = (int) PyLong_AsLong(b_radius_py),
+        width = (int) PyLong_AsLong(width_py),
+        height = (int) PyLong_AsLong(height_py);
 
-    unsigned char r = (unsigned char) PyInt_AsLong(r_py),
-                  g = (unsigned char) PyInt_AsLong(g_py),
-                  b = (unsigned char) PyInt_AsLong(b_py);
+    unsigned char r = (unsigned char) PyLong_AsLong(r_py),
+                  g = (unsigned char) PyLong_AsLong(g_py),
+                  b = (unsigned char) PyLong_AsLong(b_py);
 
     int num_bytes = bytes_per_pixel(image_mode_str);
 

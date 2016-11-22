@@ -8,7 +8,7 @@
 # http://www.opensource.org/licenses/mit-license
 # Copyright (c) 2011 globo.com thumbor@googlegroups.com
 
-from pexif import ExifSegment
+import exifread
 
 try:
     import cairosvg
@@ -228,7 +228,8 @@ class BaseEngine(object):
 
     def _get_exif_segment(self):
         try:
-            segment = ExifSegment(None, None, self.exif, 'ro')
+            # segment = ExifSegment(None, None, self.exif, 'ro')
+            print(self.exif, type(self.exif))
         except Exception:
             logger.exception('Ignored error handling exif for reorientation')
         else:

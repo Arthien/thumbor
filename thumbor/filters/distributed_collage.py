@@ -135,20 +135,20 @@ class Picture:
         try:
             self.thumbor_filter.context.modules.loader.load(
                 self.thumbor_filter.context, self.url, self.on_fetch_done)
-        except Exception, err:
+        except(Exception, err):
             self.error(err)
 
     def save_on_disc(self):
         if self.fetched:
             try:
                 self.engine.load(self.buffer, self.extension)
-            except Exception, err:
+            except(Exception, err):
                 self.error(err)
 
             try:
                 self.thumbor_filter.storage.put(self.url, self.engine.read())
                 self.thumbor_filter.storage.put_crypto(self.url)
-            except Exception, err:
+            except(Exception, err):
                 self.error(err)
         else:
             self.error("Can't save unfetched image")
@@ -170,7 +170,7 @@ class Picture:
                 StandaloneFaceDetector.get_features(self.thumbor_filter.context, self.engine))
             self.engine.focus(focal_points)
             StandaloneFaceDetector.auto_crop(self.engine, focal_points, size, canvas_height)
-        except Exception, err:
+        except(Exception, err):
             logging.error(err)
 
     def error(self, msg):
@@ -227,7 +227,7 @@ class Filter(BaseFilter):
     def create_engine(self):
         try:
             return self.context.modules.engine.__class__(self.context)
-        except Exception, err:
+        except(Exception, err):
             logging.error(err)
 
     def on_image_fetch(self):
@@ -266,7 +266,7 @@ class Filter(BaseFilter):
             try:
                 image.process(canvas_width, canvas_height, slice_size)
                 canvas.paste(image.engine, (x, y), merge=True)
-            except Exception, err:
+            except(Exception, err):
                 logging.error(err)
             i += 1
 

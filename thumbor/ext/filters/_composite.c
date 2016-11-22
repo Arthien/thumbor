@@ -10,21 +10,21 @@ _composite_apply(PyObject *self, PyObject *args)
         return NULL;
     }
 
-    char *image_mode_str = PyString_AsString(image_mode);
+    char *image_mode_str = PyBytes_AsString(image_mode);
 
-    unsigned char *ptr1 = (unsigned char *) PyString_AsString(py_image1), *aux1 = NULL;
-    unsigned char *ptr2 = (unsigned char *) PyString_AsString(py_image2), *aux2 = NULL;
+    unsigned char *ptr1 = (unsigned char *) PyBytes_AsString(py_image1), *aux1 = NULL;
+    unsigned char *ptr2 = (unsigned char *) PyBytes_AsString(py_image2), *aux2 = NULL;
 
-    int width1 = (int) PyInt_AsLong(w1),
-        width2 = (int) PyInt_AsLong(w2),
-        height1 = (int) PyInt_AsLong(h1),
-        height2 = (int) PyInt_AsLong(h2),
-        x_pos = (int) PyInt_AsLong(py_x),
-        y_pos = (int) PyInt_AsLong(py_y),
+    int width1 = (int) PyLong_AsLong(w1),
+        width2 = (int) PyLong_AsLong(w2),
+        height1 = (int) PyLong_AsLong(h1),
+        height2 = (int) PyLong_AsLong(h2),
+        x_pos = (int) PyLong_AsLong(py_x),
+        y_pos = (int) PyLong_AsLong(py_y),
         merge = 1;
 
     if (py_merge) {
-        merge = (int) PyInt_AsLong(py_merge);
+        merge = (int) PyLong_AsLong(py_merge);
     }
 
     int num_bytes = bytes_per_pixel(image_mode_str);

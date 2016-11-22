@@ -11,15 +11,15 @@ _sharpen_apply(PyObject *self, PyObject *args)
         return NULL;
     }
 
-    char *image_mode_str = PyString_AsString(image_mode);
-    unsigned char *buffer = (unsigned char *) PyString_AsString(buffer_py);
+    char *image_mode_str = PyBytes_AsString(image_mode);
+    unsigned char *buffer = (unsigned char *) PyBytes_AsString(buffer_py);
     double amount_double = PyFloat_AsDouble(amount),
            radius_double = PyFloat_AsDouble(radius);
 
     char luminance_only_bool = (char) PyObject_IsTrue(luminance_only);
 
-    int width = (int) PyInt_AsLong(width_py),
-        height = (int) PyInt_AsLong(height_py);
+    int width = (int) PyLong_AsLong(width_py),
+        height = (int) PyLong_AsLong(height_py);
 
     int num_bytes = bytes_per_pixel(image_mode_str);
     int r_idx = rgb_order(image_mode_str, 'R'),

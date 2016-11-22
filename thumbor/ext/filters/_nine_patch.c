@@ -151,10 +151,10 @@ void paste_rectangle(bitmap *source, int sx, int sy, int sw, int sh,
 void unpack_bitmap(bitmap *bitmap, PyObject *image_mode,
         PyObject *buffer, PyObject *width, PyObject *height)
 {
-    char *image_mode_str = PyString_AsString(image_mode);
-    bitmap->buffer = (unsigned char *) PyString_AsString(buffer);
-    bitmap->width = (int) PyInt_AsLong(width);
-    bitmap->height = (int) PyInt_AsLong(height);
+    char *image_mode_str = PyBytes_AsString(image_mode);
+    bitmap->buffer = (unsigned char *) PyBytes_AsString(buffer);
+    bitmap->width = (int) PyLong_AsLong(width);
+    bitmap->height = (int) PyLong_AsLong(height);
     bitmap->stride = bytes_per_pixel(image_mode_str); // typically 4 for 'RGBA'
     bitmap->alpha_idx = rgb_order(image_mode_str, 'A');
 }
@@ -299,6 +299,18 @@ static PyMethodDef _nine_patch_methods[] = {
     { 0, 0, 0, 0 }
 };
 
-PyMODINIT_FUNC init_nine_patch(void) {
-    Py_InitModule3("_nine_patch", _nine_patch_methods, "_nine_patch native module");
+static struct PyModuleDef moduledef = {
+    PyModuleDef_HEAD_INIT,
+    "_nine_patch",
+    "_nine_patch native module",
+    -1,
+    _nine_patch_methods,
+    NULL,
+    NULL,
+    NULL,
+    NULL
+};
+
+PyMODINIT_FUNC PyInit_nine_patch(void) {
+    return PyModule_Create(&moduledef);
 }

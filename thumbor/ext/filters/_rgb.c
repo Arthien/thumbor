@@ -9,12 +9,12 @@ _rgb_apply(PyObject *self, PyObject *args)
         return NULL;
     }
 
-    char *image_mode_str = PyString_AsString(image_mode);
-    Py_ssize_t size = PyString_Size(buffer);
-    unsigned char *ptr = (unsigned char *) PyString_AsString(buffer);
-    int delta_r_int = (int) PyInt_AsLong(delta_r),
-        delta_g_int = (int) PyInt_AsLong(delta_g),
-        delta_b_int = (int) PyInt_AsLong(delta_b);
+    char *image_mode_str = PyBytes_AsString(image_mode);
+    Py_ssize_t size = PyBytes_Size(buffer);
+    unsigned char *ptr = (unsigned char *) PyBytes_AsString(buffer);
+    int delta_r_int = (int) PyLong_AsLong(delta_r),
+        delta_g_int = (int) PyLong_AsLong(delta_g),
+        delta_b_int = (int) PyLong_AsLong(delta_b);
 
     int num_bytes = bytes_per_pixel(image_mode_str);
 

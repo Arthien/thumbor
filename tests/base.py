@@ -280,11 +280,11 @@ class FilterTestCase(PythonTestCase):
         im = Image.fromarray(image)
         path = '/tmp/debug_image_%s.jpg' % random.randint(1, 10000)
         im.save(path, 'JPEG')
-        print 'The debug image was in %s.' % path
+        print('The debug image was in %s.' % path)
 
     def debug_size(self, image):
         im = Image.fromarray(image)
-        print "Image dimensions are %dx%d (shape is %s)" % (im.size[0], im.size[1], image.shape)
+        print("Image dimensions are %dx%d (shape is %s)" % (im.size[0], im.size[1], image.shape))
 
 
 class DetectorTestCase(PythonTestCase):

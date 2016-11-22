@@ -13,16 +13,16 @@ _colorize_apply(PyObject *self, PyObject *args)
         return NULL;
     }
 
-    char *image_mode_str = PyString_AsString(image_mode);
+    char *image_mode_str = PyBytes_AsString(image_mode);
 
-    Py_ssize_t size = PyString_Size(buffer);
-    unsigned char *ptr = (unsigned char *) PyString_AsString(buffer);
-    int red_percent = (int) PyInt_AsLong(red_pct),
-        green_percent = (int) PyInt_AsLong(green_pct),
-        blue_percent = (int) PyInt_AsLong(blue_pct),
-        fill_red_int = (int) PyInt_AsLong(fill_r),
-        fill_green_int = (int) PyInt_AsLong(fill_g),
-        fill_blue_int = (int) PyInt_AsLong(fill_b);
+    Py_ssize_t size = PyBytes_Size(buffer);
+    unsigned char *ptr = (unsigned char *) PyBytes_AsString(buffer);
+    int red_percent = (int) PyLong_AsLong(red_pct),
+        green_percent = (int) PyLong_AsLong(green_pct),
+        blue_percent = (int) PyLong_AsLong(blue_pct),
+        fill_red_int = (int) PyLong_AsLong(fill_r),
+        fill_green_int = (int) PyLong_AsLong(fill_g),
+        fill_blue_int = (int) PyLong_AsLong(fill_b);
 
     int num_bytes = bytes_per_pixel(image_mode_str);
 

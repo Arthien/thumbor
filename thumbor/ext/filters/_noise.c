@@ -9,11 +9,11 @@ _noise_apply(PyObject *self, PyObject *args)
         return NULL;
     }
 
-    char *image_mode_str = PyString_AsString(image_mode);
-    Py_ssize_t size = PyString_Size(buffer);
-    unsigned char *ptr = (unsigned char *) PyString_AsString(buffer);
-    int amount_int = (int) PyInt_AsLong(amount);
-    int seed_int = (int) PyInt_AsLong(seed);
+    char *image_mode_str = PyBytes_AsString(image_mode);
+    Py_ssize_t size = PyBytes_Size(buffer);
+    unsigned char *ptr = (unsigned char *) PyBytes_AsString(buffer);
+    int amount_int = (int) PyLong_AsLong(amount);
+    int seed_int = (int) PyLong_AsLong(seed);
     int num_bytes = bytes_per_pixel(image_mode_str);
     int r_idx = rgb_order(image_mode_str, 'R'),
         g_idx = rgb_order(image_mode_str, 'G'),
